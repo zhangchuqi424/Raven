@@ -1,0 +1,95 @@
+.conv-node {
+  background: #1e1e2e;
+  border: 1.5px solid #313244;
+  border-radius: 10px;
+  padding: 10px 14px;
+  width: 180px;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  font-size: 13px;
+  color: #cdd6f4;
+  position: relative;
+}
+
+/* ── AI 节点 ── */
+.conv-node--ai:hover {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.conv-node--ai.selected {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+}
+
+.conv-node--ai.active {
+  border-color: #a6e3a1;
+  box-shadow: 0 0 0 3px rgba(166, 227, 161, 0.25);
+}
+
+/* ── 笔记节点 ── */
+.conv-node--note {
+  background: rgba(250, 179, 135, 0.06);
+  border-color: rgba(250, 179, 135, 0.35);
+}
+
+.conv-node--note:hover {
+  border-color: #fab387;
+  box-shadow: 0 0 0 2px rgba(250, 179, 135, 0.2);
+}
+
+.conv-node--note.selected {
+  border-color: #fab387;
+  box-shadow: 0 0 0 3px rgba(250, 179, 135, 0.3);
+}
+
+.conv-node--note.active {
+  border-color: #a6e3a1;
+  box-shadow: 0 0 0 3px rgba(166, 227, 161, 0.25);
+}
+
+/* ── 内部布局 ── */
+.conv-node__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.conv-node__icon {
+  font-size: 12px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.conv-node__summary {
+  font-weight: 500;
+  line-height: 1.4;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* ── 分支按钮 ── */
+.conv-node__branch-btn {
+  margin-top: 8px;
+  width: 100%;
+  padding: 4px 0;
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+
+.conv-node--note .conv-node__branch-btn {
+  background: #fab387;
+  color: #1e1e2e;
+}
+
+.conv-node__branch-btn:hover {
+  opacity: 0.85;
+}

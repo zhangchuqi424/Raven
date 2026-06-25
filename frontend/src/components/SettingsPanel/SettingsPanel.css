@@ -1,0 +1,140 @@
+.settings-panel {
+  background: #1e1e2e;
+  border-top: 1px solid #313244;
+  padding: 14px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ── 头部 ── */
+.settings-panel__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #a6adc8;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.settings-panel__close {
+  background: none;
+  border: none;
+  color: #6c7086;
+  cursor: pointer;
+  padding: 2px 4px;
+  font-size: 12px;
+  line-height: 1;
+  border-radius: 4px;
+  transition: color 0.15s;
+}
+.settings-panel__close:hover { color: #cdd6f4; }
+
+/* ── 快捷切换 ── */
+.settings-panel__shortcuts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.settings-panel__chip {
+  background: #313244;
+  border: 1px solid #45475a;
+  color: #a6adc8;
+  border-radius: 5px;
+  padding: 2px 8px;
+  font-size: 11px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.settings-panel__chip:hover {
+  background: #45475a;
+  color: #cdd6f4;
+}
+
+/* ── 表单 ── */
+.settings-panel__label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11px;
+  color: #6c7086;
+}
+
+.settings-panel__label select,
+.settings-panel__label input[type="text"],
+.settings-panel__label input[type="password"],
+.settings-panel__label input[type="number"] {
+  background: #181825;
+  border: 1px solid #313244;
+  border-radius: 6px;
+  color: #cdd6f4;
+  font-size: 12px;
+  padding: 5px 8px;
+  outline: none;
+  transition: border-color 0.15s;
+  width: 100%;
+  box-sizing: border-box;
+}
+.settings-panel__label select:focus,
+.settings-panel__label input:focus {
+  border-color: #6366f1;
+}
+.settings-panel__label select {
+  cursor: pointer;
+}
+
+/* API Key row */
+.settings-panel__key-row {
+  display: flex;
+  gap: 4px;
+}
+.settings-panel__key-row input { flex: 1; }
+
+.settings-panel__eye {
+  background: #313244;
+  border: 1px solid #45475a;
+  border-radius: 6px;
+  padding: 0 6px;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+  color: #6c7086;
+}
+.settings-panel__eye:hover { color: #cdd6f4; }
+
+.settings-panel__key-hint {
+  color: #45475a;
+  font-size: 10px;
+  margin-top: 2px;
+}
+
+/* ── 状态 / 按钮 ── */
+.settings-panel__error {
+  background: rgba(243, 139, 168, 0.12);
+  color: #f38ba8;
+  font-size: 11px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(243, 139, 168, 0.25);
+}
+
+.settings-panel__save {
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  padding: 7px 0;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+  margin-top: 2px;
+}
+.settings-panel__save:hover:not(:disabled) { background: #4f52d9; }
+.settings-panel__save:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,0 +1,157 @@
+.session-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: #181825;
+  border-right: 1px solid #313244;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+
+.session-sidebar__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 18px 16px 14px;
+  border-bottom: 1px solid #313244;
+}
+
+.session-sidebar__logo {
+  font-size: 20px;
+}
+
+.session-sidebar__title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #cdd6f4;
+  letter-spacing: 0.02em;
+}
+
+.session-sidebar__new-btn {
+  margin: 12px 12px 0;
+  padding: 8px 0;
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.session-sidebar__new-btn:hover {
+  background: #4f46e5;
+}
+
+.session-sidebar__name-input {
+  margin: 8px 12px 0;
+  padding: 7px 10px;
+  background: #11111b;
+  border: 1.5px solid #6366f1;
+  border-radius: 8px;
+  color: #cdd6f4;
+  font-size: 13px;
+  width: calc(100% - 24px);
+  outline: none;
+}
+
+.session-sidebar__list {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0 8px;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.session-sidebar__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #bac2de;
+  font-size: 13px;
+  transition: background 0.1s;
+}
+
+.session-sidebar__item:hover {
+  background: #1e1e2e;
+}
+
+.session-sidebar__item.active {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  font-weight: 600;
+}
+
+.session-sidebar__item-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.session-sidebar__delete-btn {
+  background: transparent;
+  border: none;
+  color: #585b70;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  visibility: hidden;
+  transition: color 0.1s;
+}
+
+.session-sidebar__item:hover .session-sidebar__delete-btn {
+  visibility: visible;
+}
+
+.session-sidebar__delete-btn:hover {
+  color: #f38ba8;
+}
+
+/* ── 底部设置按钮 ── */
+.session-sidebar__footer {
+  border-top: 1px solid #313244;
+  flex-shrink: 0;
+}
+
+.session-sidebar__settings-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  color: #6c7086;
+  font-size: 12px;
+  padding: 11px 16px;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.15s, background 0.15s;
+}
+.session-sidebar__settings-btn:hover {
+  color: #cdd6f4;
+  background: #1e1e2e;
+}
+.session-sidebar__settings-btn.active {
+  color: #cdd6f4;
+  background: #1e1e2e;
+}
+
+.session-sidebar__provider-badge {
+  margin-left: auto;
+  font-size: 10px;
+  background: #313244;
+  color: #a6adc8;
+  padding: 1px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+}

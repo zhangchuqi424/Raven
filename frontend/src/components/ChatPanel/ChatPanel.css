@@ -1,0 +1,10 @@
+.chat-panel {
+  flex: 1;
+  min-width: 0;
+  border-right: 1px solid #313244;
+  background: #1e1e2e;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
