@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { getSessions, createSession, deleteSession, getTree } from '../api/http'
+import { getSessions, createSession, deleteSession, getTree, updateNode } from '../api/http'
 
 /**
  * 将节点列表转换为 React Flow 需要的 nodes + edges 格式
@@ -59,7 +59,7 @@ function buildFlowGraph(rawNodes) {
       source: n.parent_id,
       target: n.id,
       type:   'smoothstep',
-      style:  { stroke: '#6366f1', strokeWidth: 1.5 },
+      style:  { stroke: 'rgba(56,56,58,1)', strokeWidth: 1.5 },
     }))
 
   return { nodes: flowNodes, edges: flowEdges }
@@ -114,6 +114,34 @@ const useTreeStore = create((set, get) => ({
       const { nodes: flowNodes, edges: flowEdges } = buildFlowGraph(raw)
       return { rawNodes: raw, flowNodes, flowEdges }
     })
+  },
+
+  /** 节点数据更新后（编辑内容 / WebSocket 推送）同步到本地状态 */
+  updateNodeInStore(updatedNode) {
+    set(s => {
+      const raw = s.rawNodes.map(n => n.id === updatedNode.id ? { ...n, ...updatedNode } : n)
+      const { nodes: flowNodes, edges: flowEdges } = buildFlowGraph(raw)
+      return { rawNodes: raw, flowNodes, flowEdges }
+    })
+  },
+
+  /** 把节点挂到新父节点下（重接连线时调用）*/
+  async reparentNode(nodeId, newParentId) {
+    try {
+      const updated = await updateNode({ node_id: nodeId, parent_id: newParentId })
+      set(s => {
+        const raw = s.rawNodes.map(n => n.id === nodeId ? { ...n, parent_id: updated.parent_id } : n)
+        const { nodes: flowNodes, edges: flowEdges } = buildFlowGraph(raw)
+        return { rawNodes: raw, flowNodes, flowEdges }
+      })
+    } catch (err) {
+      console.error('reparent failed:', err)
+      // 失败时从 rawNodes 重建，回滚视图
+      set(s => {
+        const { nodes: flowNodes, edges: flowEdges } = buildFlowGraph(s.rawNodes)
+        return { flowNodes, flowEdges }
+      })
+    }
   },
 
   /** 重新布局（拖拽后同步位置） */

@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { createNode, createNote } from '../api/http'
+import { createNode, createNote, updateNode } from '../api/http'
 import useTreeStore from './treeStore'
 
 const useChatStore = create((set, get) => ({
@@ -22,6 +22,16 @@ const useChatStore = create((set, get) => ({
 
   setActiveParent(nodeId) {
     set({ activeParentId: nodeId, selectedNodeId: nodeId })
+  },
+
+  async updateNoteContent(nodeId, content) {
+    set({ error: null })
+    try {
+      const updated = await updateNode({ node_id: nodeId, content })
+      useTreeStore.getState().updateNodeInStore(updated)
+    } catch (err) {
+      set({ error: err.message })
+    }
   },
 
   async addNote(content) {

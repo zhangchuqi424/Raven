@@ -16,6 +16,16 @@ async function request(path, options = {}) {
 export const createNote = ({ session_id, parent_id, content }) =>
   request('/nodes/note', { method: 'POST', body: JSON.stringify({ session_id, parent_id, content }) })
 
+// 更新节点（内容 / 父节点）
+export const updateNode = ({ node_id, content, parent_id }) =>
+  request(`/nodes/${node_id}`, {
+    method: 'PATCH',
+    body: JSON.stringify({
+      ...(content   !== undefined && { content }),
+      ...(parent_id !== undefined && { parent_id }),
+    }),
+  })
+
 // Settings
 export const getSettings    = ()       => request('/settings')
 export const updateSettings = (patch)  => request('/settings', { method: 'POST', body: JSON.stringify(patch) })

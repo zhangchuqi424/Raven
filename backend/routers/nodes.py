@@ -26,6 +26,11 @@ class CreateNoteRequest(BaseModel):
     content: str
 
 
+class UpdateNodeRequest(BaseModel):
+    content: Optional[str] = None    # 更新笔记内容（仅 note 类型）
+    parent_id: Optional[str] = None  # 重新挂载父节点
+
+
 @router.post("")
 async def create_node(body: CreateNodeRequest, db: DBSession = Depends(get_db)):
     """
@@ -137,6 +142,42 @@ async def create_note(body: CreateNoteRequest, db: DBSession = Depends(get_db)):
     }
     await manager.broadcast(body.session_id, "node_created", node_data)
 
+    return node_data
+
+
+@router.patch("/{node_id}")
+async def update_node(node_id: str, body: UpdateNodeRequest, db: DBSession = Depends(get_db)):
+    """
+    更新节点属性：
+    - content  → 更新想法节点的文字内容（仅限 node_type='note'）
+    - parent_id → 重新挂载到新的父节点（更改连接关系）
+    """
+    node = db.get(Node, node_id)
+    if not node:
+        raise HTTPException(status_code=404, detail="Node not found")
+
+    if body.content is not None:
+        if node.node_type != 'note':
+            raise HTTPException(status_code=400, detail="只有想法节点支持内容编辑")
+        node.question = body.content
+        node.summary  = body.content[:25].strip()
+
+    if body.parent_id is not None:
+        node.parent_id = body.parent_id
+
+    db.commit()
+    db.refresh(node)
+
+    node_data = {
+        "id":         node.id,
+        "session_id": node.session_id,
+        "parent_id":  node.parent_id,
+        "question":   node.question,
+        "answer":     node.answer,
+        "summary":    node.summary,
+        "node_type":  node.node_type,
+    }
+    await manager.broadcast(node.session_id, "node_updated", node_data)
     return node_data
 
 

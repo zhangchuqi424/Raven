@@ -14,6 +14,7 @@ export default function SessionSidebar() {
   const removeSession    = useTreeStore(s => s.removeSession)
   const setActiveSession = useTreeStore(s => s.setActiveSession)
   const addNode          = useTreeStore(s => s.addNode)
+  const updateNodeInStore = useTreeStore(s => s.updateNodeInStore)
 
   const setActiveParent  = useChatStore(s => s.setActiveParent)
 
@@ -35,10 +36,13 @@ export default function SessionSidebar() {
     if (!activeSessionId) return
     socket.connect(activeSessionId)
 
-    const unsub = socket.on('node_created', (node) => {
+    const unsubCreated = socket.on('node_created', (node) => {
       addNode(node)
     })
-    return unsub
+    const unsubUpdated = socket.on('node_updated', (node) => {
+      updateNodeInStore(node)
+    })
+    return () => { unsubCreated(); unsubUpdated() }
   }, [activeSessionId, addNode])
 
   async function handleNew() {
