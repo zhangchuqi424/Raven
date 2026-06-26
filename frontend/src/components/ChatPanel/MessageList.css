@@ -88,7 +88,13 @@
   padding: 11px 16px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
+}
+
+.msg-note__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .msg-note__label {
@@ -99,6 +105,29 @@
   color: var(--note);
 }
 
+/* 编辑按钮 */
+.msg-note__edit-btn {
+  background: none;
+  border: 1px solid rgba(255,159,10,0.30);
+  color: var(--note);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: var(--r-s);
+  cursor: pointer;
+  letter-spacing: -0.01em;
+  opacity: 0;
+  transition: opacity var(--ease) var(--dur), background var(--ease) var(--dur);
+}
+
+.msg-note:hover .msg-note__edit-btn {
+  opacity: 1;
+}
+
+.msg-note__edit-btn:hover {
+  background: rgba(255,159,10,0.10);
+}
+
 .msg-note__content {
   color: var(--text-1);
   font-size: 14px;
@@ -106,6 +135,74 @@
   white-space: pre-wrap;
   margin: 0;
   letter-spacing: -0.01em;
+}
+
+/* ── 编辑态 ── */
+.msg-note__edit {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.msg-note__textarea {
+  width: 100%;
+  min-height: 72px;
+  resize: none;
+  background: rgba(255,159,10,0.06);
+  border: 1px solid rgba(255,159,10,0.30);
+  border-radius: var(--r-s);
+  color: var(--text-1);
+  font-size: 14px;
+  font-family: inherit;
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+  padding: 8px 10px;
+  outline: none;
+  box-sizing: border-box;
+  overflow-y: hidden;
+  transition: border-color var(--ease) var(--dur);
+}
+
+.msg-note__textarea:focus {
+  border-color: var(--note);
+}
+
+.msg-note__edit-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.msg-note__save-btn {
+  padding: 5px 14px;
+  background: var(--note);
+  color: rgba(0,0,0,0.75);
+  border: none;
+  border-radius: var(--r-s);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  transition: opacity var(--ease) var(--dur);
+}
+
+.msg-note__save-btn:hover { opacity: 0.82; }
+
+.msg-note__cancel-btn {
+  padding: 5px 12px;
+  background: var(--fill-4);
+  color: var(--text-2);
+  border: 1px solid var(--sep);
+  border-radius: var(--r-s);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: background var(--ease) var(--dur), color var(--ease) var(--dur);
+}
+
+.msg-note__cancel-btn:hover {
+  background: var(--fill-3);
+  color: var(--text-1);
 }
 
 /* ── 错误提示 ── */
