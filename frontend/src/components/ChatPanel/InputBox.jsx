@@ -56,13 +56,13 @@ export default function InputBox() {
           className={`input-box__tab ${!isNote ? 'active-ai' : ''}`}
           onClick={() => setMode('ai')}
         >
-          💬 问 AI
+          AI 对话
         </button>
         <button
           className={`input-box__tab ${isNote ? 'active-note' : ''}`}
           onClick={() => setMode('note')}
         >
-          ✏️ 记想法
+          笔记
         </button>
       </div>
 

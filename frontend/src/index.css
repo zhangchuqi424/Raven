@@ -2,20 +2,69 @@
   box-sizing: border-box;
 }
 
+/* ── Apple HIG 暗色模式设计 Token ── */
+:root {
+  /* 背景层级 */
+  --bg-app:         #000000;
+  --bg-l1:          #1c1c1e;
+  --bg-l2:          #2c2c2e;
+  --bg-l3:          #3a3a3c;
+
+  /* 填充 */
+  --fill-1:  rgba(120,120,128,0.36);
+  --fill-2:  rgba(120,120,128,0.20);
+  --fill-3:  rgba(120,120,128,0.12);
+  --fill-4:  rgba(120,120,128,0.07);
+
+  /* 文字 */
+  --text-1:  rgba(255,255,255,0.92);
+  --text-2:  rgba(235,235,245,0.60);
+  --text-3:  rgba(235,235,245,0.30);
+  --text-4:  rgba(235,235,245,0.16);
+
+  /* 分割线 */
+  --sep:     rgba(60,60,67,0.36);
+  --sep-s:   rgba(56,56,58,1.00);
+
+  /* 主色 — Silver / Graphite（无彩色系） */
+  --accent:      rgba(255,255,255,0.92);  /* 按钮填充 */
+  --accent-hi:   rgba(255,255,255,1.00);  /* hover */
+  --accent-on:   rgba(0,0,0,0.82);        /* accent 背景上的文字 */
+  --accent-tint: rgba(255,255,255,0.07);  /* 选中态背景 */
+  --accent-line: rgba(255,255,255,0.38);  /* 焦点边框 / 选中描边 */
+  --accent-glow: rgba(255,255,255,0.12);  /* 选中光晕 */
+
+  /* 功能色 */
+  --note:    #FF9F0A;   /* SF Orange */
+  --green:   #30D158;   /* SF Green  */
+  --red:     #FF453A;   /* SF Red    */
+
+  /* 圆角 */
+  --r-s:  6px;
+  --r-m:  10px;
+  --r-l:  12px;
+
+  /* 过渡 */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur:  0.15s;
+}
+
 html, body, #root {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: #11111b;
-  color: #cdd6f4;
-  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg-app);
+  color: var(--text-1);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text',
+               'Helvetica Neue', Arial, sans-serif;
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-button, input, textarea {
+button, input, textarea, select {
   font-family: inherit;
 }
 
@@ -23,4 +72,15 @@ p, ul, li {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+/* ── 滚动条 ── */
+::-webkit-scrollbar        { width: 4px; }
+::-webkit-scrollbar-track  { background: transparent; }
+::-webkit-scrollbar-thumb  {
+  background: rgba(255,255,255,0.10);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.20);
 }

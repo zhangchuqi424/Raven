@@ -1,8 +1,8 @@
 .tree-panel {
-  width: 420px;
-  flex-shrink: 0;
+  flex: 1;
+  min-width: 0;
   height: 100%;
-  background: #11111b;
+  background: #000000;
   position: relative;
 }
 
@@ -10,6 +10,57 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #585b70;
-  font-size: 14px;
+  color: var(--text-3);
+  font-size: 13px;
+  letter-spacing: -0.01em;
+}
+
+/* ── ReactFlow Controls ── */
+.react-flow__controls {
+  background: var(--bg-l1) !important;
+  border: 1px solid var(--sep) !important;
+  border-radius: var(--r-m) !important;
+  box-shadow: none !important;
+  overflow: hidden;
+}
+
+.react-flow__controls-button {
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid var(--sep) !important;
+  fill: var(--text-3) !important;
+  width: 28px !important;
+  height: 28px !important;
+  transition: fill var(--ease) var(--dur), background var(--ease) var(--dur) !important;
+}
+
+.react-flow__controls-button:last-child {
+  border-bottom: none !important;
+}
+
+.react-flow__controls-button:hover {
+  background: var(--fill-4) !important;
+  fill: var(--text-1) !important;
+}
+
+/* ── MiniMap ── */
+.react-flow__minimap {
+  background: var(--bg-l1) !important;
+  border: 1px solid var(--sep) !important;
+  border-radius: var(--r-m) !important;
+  overflow: hidden;
+}
+
+/* ── Edges ── */
+.react-flow__edge-path {
+  stroke: var(--sep-s) !important;
+  stroke-width: 1.5 !important;
+}
+
+/* ── Handles（连接点） ── */
+.react-flow__handle {
+  width: 6px !important;
+  height: 6px !important;
+  background: var(--bg-l3) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
 }

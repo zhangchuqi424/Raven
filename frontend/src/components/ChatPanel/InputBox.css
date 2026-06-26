@@ -1,61 +1,69 @@
 .input-box {
-  border-top: 1px solid #313244;
-  padding: 12px 16px;
+  border-top: 1px solid var(--sep);
+  padding: 10px 16px 16px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  background: #1e1e2e;
+  gap: 8px;
+  background: #060608;
 }
 
-/* ── 模式切换 ── */
+/* ── 模式切换（分段控制器） ── */
 .input-box__mode-tabs {
   display: flex;
-  gap: 4px;
+  background: var(--fill-4);
+  border-radius: 7px;
+  padding: 2px;
+  gap: 0;
 }
 
 .input-box__tab {
   flex: 1;
   padding: 5px 0;
-  background: #181825;
-  border: 1.5px solid #313244;
-  border-radius: 8px;
-  color: #585b70;
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+  color: var(--text-3);
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.15s;
+  letter-spacing: -0.01em;
+  transition: background var(--ease) var(--dur),
+              color var(--ease) var(--dur),
+              box-shadow var(--ease) var(--dur);
 }
 
-.input-box__tab:hover {
-  color: #a6adc8;
-  border-color: #45475a;
+.input-box__tab:hover:not(.active-ai):not(.active-note) {
+  color: var(--text-2);
 }
 
 .input-box__tab.active-ai {
-  background: rgba(99, 102, 241, 0.12);
-  border-color: #6366f1;
-  color: #6366f1;
+  background: var(--bg-l2);
+  color: var(--text-1);
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.4), 0 0.5px 1px rgba(0,0,0,0.3);
 }
 
 .input-box__tab.active-note {
-  background: rgba(250, 179, 135, 0.12);
-  border-color: #fab387;
-  color: #fab387;
+  background: var(--bg-l2);
+  color: var(--note);
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.4), 0 0.5px 1px rgba(0,0,0,0.3);
 }
 
-/* ── 分支标签 ── */
+/* ── 分支提示 ── */
 .input-box__branch-label {
   font-size: 11px;
-  color: #6366f1;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  padding-left: 2px;
+  color: var(--text-3);
+  font-weight: 500;
+  padding: 0 2px;
+  letter-spacing: -0.01em;
 }
 
 .input-box__branch-label.note-mode {
-  color: #fab387;
+  color: var(--text-3);
 }
 
+/* ── 输入行 ── */
 .input-box__row {
   display: flex;
   gap: 8px;
@@ -65,71 +73,86 @@
 .input-box__textarea {
   flex: 1;
   resize: none;
-  background: #181825;
-  border: 1.5px solid #313244;
-  border-radius: 10px;
-  color: #cdd6f4;
+  background: var(--bg-l1);
+  border: 1px solid var(--sep);
+  border-radius: var(--r-m);
+  color: var(--text-1);
   font-size: 14px;
   font-family: inherit;
   padding: 10px 14px;
-  line-height: 1.5;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
   outline: none;
-  transition: border-color 0.15s;
   min-height: 44px;
   max-height: 160px;
   overflow-y: auto;
+  transition: border-color var(--ease) var(--dur);
+}
+
+.input-box__textarea::placeholder {
+  color: var(--text-4);
 }
 
 .input-box__textarea:focus {
-  border-color: #6366f1;
+  border-color: var(--accent-line);
 }
 
 .input-box__textarea.note-mode:focus {
-  border-color: #fab387;
+  border-color: var(--note);
 }
 
 .input-box__textarea:disabled {
-  opacity: 0.6;
+  opacity: 0.45;
   cursor: not-allowed;
 }
 
+/* ── 发送按钮（圆形） ── */
 .input-box__send {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   flex-shrink: 0;
-  background: #6366f1;
+  background: var(--accent);
   border: none;
-  border-radius: 10px;
-  color: #fff;
-  font-size: 18px;
+  border-radius: 50%;
+  color: var(--accent-on);
+  font-size: 15px;
+  font-weight: 700;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.15s, opacity 0.15s;
+  transition: background var(--ease) var(--dur),
+              opacity var(--ease) var(--dur),
+              transform var(--ease) var(--dur);
 }
 
 .input-box__send:hover:not(:disabled) {
-  background: #4f46e5;
+  background: var(--accent-hi);
+  transform: scale(1.06);
+}
+
+.input-box__send:active:not(:disabled) {
+  transform: scale(0.96);
 }
 
 .input-box__send.note-mode {
-  background: #fab387;
-  color: #1e1e2e;
-  font-size: 16px;
+  background: var(--note);
+  color: rgba(0,0,0,0.75);
 }
 
 .input-box__send.note-mode:hover:not(:disabled) {
-  background: #f9a27a;
+  background: #ffb42a;
 }
 
 .input-box__send:disabled {
-  opacity: 0.4;
+  opacity: 0.28;
   cursor: not-allowed;
 }
 
+/* ── 错误 ── */
 .input-box__error {
   font-size: 12px;
-  color: #f38ba8;
-  padding: 4px 2px;
+  color: var(--red);
+  padding: 0 2px;
+  letter-spacing: -0.01em;
 }

@@ -1,51 +1,51 @@
 .conv-node {
-  background: #1e1e2e;
-  border: 1.5px solid #313244;
-  border-radius: 10px;
-  padding: 10px 14px;
-  width: 180px;
+  background: var(--bg-l1);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--r-l);
+  padding: 10px 12px;
+  width: 176px;
   cursor: pointer;
-  transition: border-color 0.15s, box-shadow 0.15s;
-  font-size: 13px;
-  color: #cdd6f4;
   position: relative;
+  transition: border-color var(--ease) var(--dur),
+              box-shadow var(--ease) var(--dur),
+              background var(--ease) var(--dur);
+}
+
+.conv-node:hover {
+  background: var(--bg-l2);
+  border-color: rgba(255,255,255,0.14);
 }
 
 /* ── AI 节点 ── */
-.conv-node--ai:hover {
-  border-color: #6366f1;
-  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
-}
-
 .conv-node--ai.selected {
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+  border-color: var(--accent-line);
+  box-shadow: 0 0 0 3px var(--accent-glow);
 }
 
 .conv-node--ai.active {
-  border-color: #a6e3a1;
-  box-shadow: 0 0 0 3px rgba(166, 227, 161, 0.25);
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(48,209,88,0.16);
 }
 
 /* ── 笔记节点 ── */
 .conv-node--note {
-  background: rgba(250, 179, 135, 0.06);
-  border-color: rgba(250, 179, 135, 0.35);
+  background: rgba(255,159,10,0.04);
+  border-color: rgba(255,159,10,0.18);
 }
 
 .conv-node--note:hover {
-  border-color: #fab387;
-  box-shadow: 0 0 0 2px rgba(250, 179, 135, 0.2);
+  background: rgba(255,159,10,0.07);
+  border-color: rgba(255,159,10,0.28);
 }
 
 .conv-node--note.selected {
-  border-color: #fab387;
-  box-shadow: 0 0 0 3px rgba(250, 179, 135, 0.3);
+  border-color: var(--note);
+  box-shadow: 0 0 0 3px rgba(255,159,10,0.18);
 }
 
 .conv-node--note.active {
-  border-color: #a6e3a1;
-  box-shadow: 0 0 0 3px rgba(166, 227, 161, 0.25);
+  border-color: var(--green);
+  box-shadow: 0 0 0 3px rgba(48,209,88,0.16);
 }
 
 /* ── 内部布局 ── */
@@ -56,40 +56,52 @@
 }
 
 .conv-node__icon {
-  font-size: 12px;
+  font-size: 11px;
   flex-shrink: 0;
   margin-top: 1px;
+  opacity: 0.55;
+  line-height: 1.4;
 }
 
 .conv-node__summary {
-  font-weight: 500;
-  line-height: 1.4;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--text-2);
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+  letter-spacing: -0.01em;
+  transition: color var(--ease) var(--dur);
+}
+
+.conv-node:hover .conv-node__summary,
+.conv-node.selected .conv-node__summary {
+  color: var(--text-1);
 }
 
 /* ── 分支按钮 ── */
 .conv-node__branch-btn {
   margin-top: 8px;
   width: 100%;
-  padding: 4px 0;
-  background: #6366f1;
-  color: #fff;
+  padding: 5px 0;
+  background: var(--accent);
+  color: var(--accent-on);
   border: none;
-  border-radius: 6px;
+  border-radius: var(--r-s);
   cursor: pointer;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
-  transition: background 0.15s;
+  letter-spacing: -0.01em;
+  transition: opacity var(--ease) var(--dur);
 }
 
 .conv-node--note .conv-node__branch-btn {
-  background: #fab387;
-  color: #1e1e2e;
+  background: var(--note);
+  color: rgba(0,0,0,0.72);
 }
 
 .conv-node__branch-btn:hover {
-  opacity: 0.85;
+  opacity: 0.82;
 }

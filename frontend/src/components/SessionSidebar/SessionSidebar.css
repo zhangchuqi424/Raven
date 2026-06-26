@@ -1,93 +1,112 @@
 .session-sidebar {
-  width: 220px;
+  width: 200px;
   flex-shrink: 0;
-  background: #181825;
-  border-right: 1px solid #313244;
+  background: var(--bg-l1);
+  border-right: 1px solid var(--sep);
   display: flex;
   flex-direction: column;
   height: 100%;
   overflow: hidden;
 }
 
+/* ── 顶部品牌区 ── */
 .session-sidebar__header {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 18px 16px 14px;
-  border-bottom: 1px solid #313244;
+  padding: 20px 16px 14px;
+  border-bottom: 1px solid var(--sep);
 }
 
 .session-sidebar__logo {
-  font-size: 20px;
+  font-size: 17px;
+  line-height: 1;
+  opacity: 0.9;
 }
 
 .session-sidebar__title {
   font-size: 15px;
-  font-weight: 700;
-  color: #cdd6f4;
-  letter-spacing: 0.02em;
+  font-weight: 600;
+  color: var(--text-1);
+  letter-spacing: -0.02em;
 }
 
+/* ── 新建按钮 ── */
 .session-sidebar__new-btn {
   margin: 12px 12px 0;
   padding: 8px 0;
-  background: #6366f1;
-  color: #fff;
+  background: var(--accent);
+  color: var(--accent-on);
   border: none;
-  border-radius: 8px;
+  border-radius: var(--r-m);
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.15s;
+  letter-spacing: -0.01em;
+  transition: background var(--ease) var(--dur), opacity var(--ease) var(--dur);
 }
 
 .session-sidebar__new-btn:hover {
-  background: #4f46e5;
+  background: var(--accent-hi);
 }
 
+/* ── 命名输入 ── */
 .session-sidebar__name-input {
   margin: 8px 12px 0;
-  padding: 7px 10px;
-  background: #11111b;
-  border: 1.5px solid #6366f1;
-  border-radius: 8px;
-  color: #cdd6f4;
+  padding: 8px 10px;
+  background: var(--bg-l2);
+  border: 1px solid var(--sep);
+  border-radius: var(--r-m);
+  color: var(--text-1);
   font-size: 13px;
   width: calc(100% - 24px);
   outline: none;
+  transition: border-color var(--ease) var(--dur);
 }
 
+.session-sidebar__name-input:focus {
+  border-color: var(--accent-line);
+}
+
+.session-sidebar__name-input::placeholder {
+  color: var(--text-4);
+}
+
+/* ── 会话列表 ── */
 .session-sidebar__list {
   list-style: none;
-  margin: 10px 0 0;
+  margin: 8px 0 0;
   padding: 0 8px;
   overflow-y: auto;
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
 }
 
 .session-sidebar__item {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 10px;
-  border-radius: 8px;
+  padding: 7px 10px;
+  border-radius: var(--r-m);
   cursor: pointer;
-  color: #bac2de;
+  color: var(--text-2);
   font-size: 13px;
-  transition: background 0.1s;
+  letter-spacing: -0.01em;
+  transition: background var(--ease) 0.1s, color var(--ease) 0.1s;
 }
 
 .session-sidebar__item:hover {
-  background: #1e1e2e;
+  background: var(--fill-4);
+  color: var(--text-1);
 }
 
 .session-sidebar__item.active {
-  background: #1e1e2e;
-  color: #cdd6f4;
-  font-weight: 600;
+  background: var(--accent-tint);
+  color: var(--text-1);
+  font-weight: 500;
+  box-shadow: inset 2px 0 0 var(--accent-line);
 }
 
 .session-sidebar__item-name {
@@ -97,16 +116,18 @@
   white-space: nowrap;
 }
 
+/* ── 删除按钮 ── */
 .session-sidebar__delete-btn {
   background: transparent;
   border: none;
-  color: #585b70;
+  color: var(--text-3);
   cursor: pointer;
-  font-size: 12px;
+  font-size: 11px;
   padding: 2px 4px;
   border-radius: 4px;
   visibility: hidden;
-  transition: color 0.1s;
+  transition: color var(--ease) 0.1s;
+  line-height: 1;
 }
 
 .session-sidebar__item:hover .session-sidebar__delete-btn {
@@ -114,12 +135,12 @@
 }
 
 .session-sidebar__delete-btn:hover {
-  color: #f38ba8;
+  color: var(--red);
 }
 
-/* ── 底部设置按钮 ── */
+/* ── 底部设置 ── */
 .session-sidebar__footer {
-  border-top: 1px solid #313244;
+  border-top: 1px solid var(--sep);
   flex-shrink: 0;
 }
 
@@ -127,31 +148,35 @@
   width: 100%;
   background: none;
   border: none;
-  color: #6c7086;
+  color: var(--text-3);
   font-size: 12px;
-  padding: 11px 16px;
+  padding: 11px 14px;
   text-align: left;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 6px;
-  transition: color 0.15s, background 0.15s;
+  letter-spacing: -0.01em;
+  transition: color var(--ease) var(--dur), background var(--ease) var(--dur);
 }
+
 .session-sidebar__settings-btn:hover {
-  color: #cdd6f4;
-  background: #1e1e2e;
+  color: var(--text-1);
+  background: var(--fill-4);
 }
+
 .session-sidebar__settings-btn.active {
-  color: #cdd6f4;
-  background: #1e1e2e;
+  color: var(--text-1);
+  background: var(--accent-tint);
 }
 
 .session-sidebar__provider-badge {
   margin-left: auto;
   font-size: 10px;
-  background: #313244;
-  color: #a6adc8;
-  padding: 1px 6px;
+  background: var(--fill-3);
+  color: var(--text-2);
+  padding: 2px 6px;
   border-radius: 4px;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
+  font-weight: 500;
 }

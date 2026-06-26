@@ -61,12 +61,12 @@ export default function TreePanel() {
         maxZoom={2}
         proOptions={{ hideAttribution: true }}
       >
-        <Background color="#313244" gap={24} size={1} />
+        <Background color="rgba(255,255,255,0.04)" gap={20} size={1} />
         <Controls showInteractive={false} />
         <MiniMap
-          nodeColor="#6366f1"
-          maskColor="rgba(0,0,0,0.6)"
-          style={{ background: '#181825' }}
+          nodeColor="rgba(255,255,255,0.35)"
+          maskColor="rgba(0,0,0,0.72)"
+          style={{ background: '#1c1c1e' }}
         />
       </ReactFlow>
     </div>
